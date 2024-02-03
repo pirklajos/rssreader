@@ -3,8 +3,9 @@
 {% block title %}RSSObject index{% endblock %}
 
 {% block body %}
-    <h1>RSSObject index</h1>
 
+    <h1>RSSObject index</h1>
+        
         <label for="refreshRateSlider" class="form-label">Refresh Rate in mins</label>
         <input type="range" class="form-range" min="2" max="30" id="refreshRateSlider" oninput="this.nextElementSibling.value = this.value">
         <output>24</output>

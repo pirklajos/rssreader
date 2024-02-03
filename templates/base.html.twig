@@ -16,7 +16,12 @@
     </head>
     <body>
         <div class="container">
-        {% block body %}{% endblock %}
+            <div class="navbar" style="background-color: #e3f2fd;">
+                <a href="/" class="fa-solid fa-rss fa-xl navbar-brand"></a>
+                <a href="/rss" class="fa-solid fa-gears fa-xl"></a>
+                <a href="/logout" class="fa-solid fa-person-walking-arrow-right fa-xl"></a>
+            </div>
+            {% block body %}{% endblock %}
         </div>
     </body>
 </html>
