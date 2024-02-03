@@ -21,8 +21,6 @@ class RSSReaderController extends AbstractController
             }
         }
 
-        //dd( $rssList );
-
         return $this->render('rss_reader/index.html.twig', [
             'rssList' => $rssList,
         ]);
