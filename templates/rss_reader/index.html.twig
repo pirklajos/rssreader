@@ -25,7 +25,21 @@
                             </div>
                         </div>
                     </div>
+                {% else %}
+                <h5>No feed content for this channel</h5>
                 {% endfor %}
             </div>
+        {% else %}
+        <h3>There is no registered RSS feed yet</h3>
         {% endfor %}
+
+
+
+<script>
+    setTimeout(function(){
+        location.reload();
+    }, {{ refreshRate }}*1000*60);
+</script>
+
 {% endblock %}
+
