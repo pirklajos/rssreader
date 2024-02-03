@@ -14,12 +14,13 @@ class RSSObjectType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('url', null, ['required' => false])
+            ->add('url', null, ['required' => true])
             ->add('active')
-            ->add('userid', EntityType::class, [
+            /*->add('userid', EntityType::class, [
                 'class' => User::class,
                 'choice_label' => 'email',
-            ])
+                'value'=> 4,
+            ])*/
         ;
     }
 
