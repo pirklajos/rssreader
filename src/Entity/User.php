@@ -33,6 +33,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user_id', targetEntity: RSSObject::class)]
     private Collection $rSSObjectList;
 
+    #[ORM\Column]
+    private ?int $refreshrate = null;
+
 
     public function __construct()
     {
@@ -135,6 +138,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $rSSObjectList->setUserId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getRefreshrate(): ?int
+    {
+        return $this->refreshrate;
+    }
+
+    public function setRefreshrate(int $refreshrate): static
+    {
+        $this->refreshrate = $refreshrate;
 
         return $this;
     }

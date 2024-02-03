@@ -5,10 +5,12 @@
 {% block body %}
 
     <h1>RSSObject index</h1>
-        
-        <label for="refreshRateSlider" class="form-label">Refresh Rate in mins</label>
-        <input type="range" class="form-range" min="2" max="30" id="refreshRateSlider" oninput="this.nextElementSibling.value = this.value">
-        <output>24</output>
+        <form action="rss_reader" method="POST">
+            <label for="refreshRateSlider" class="form-label">Refresh Rate in mins</label>
+            <input type="range" value="{{ refreshRate }}" name="refresh_rate" class="form-range" min="2" max="30" id="refreshRateSlider" oninput="this.nextElementSibling.value = this.value">
+            <output>{{ refreshRate }}</output>
+            <input type="submit" />
+        </form>
         
         {% for rss in rssList %}
             <h3>{{ rss.channel.title }}</h3>
