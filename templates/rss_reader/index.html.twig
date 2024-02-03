@@ -4,17 +4,25 @@
 
 {% block body %}
     <h1>RSSObject index</h1>
+
+        <label for="refreshRateSlider" class="form-label">Refresh Rate in mins</label>
+        <input type="range" class="form-range" min="2" max="30" id="refreshRateSlider" oninput="this.nextElementSibling.value = this.value">
+        <output>24</output>
+        
         {% for rss in rssList %}
             <h3>{{ rss.channel.title }}</h3>
-            {% for rss_record in rss.channel.item %}
-            <div class="col-sm">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ rss_record.title }}</h5>
-                        <a href="{{ rss_record.link }}" class="btn btn-primary" target="_blank">Open</a>
+            <div class="row">
+                {% for rss_record in rss.channel.item|slice(0, 8) %}
+                    <div class="col">
+                        <div class="card">
+                            <img src="{{ rss_record.enclosure.attributes.url }}" class="card-img-top" alt="{{ rss_record.title }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ rss_record.title }}</h5>
+                                <a href="{{ rss_record.link }}" class="btn btn-primary" target="_blank">Open</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         {% endfor %}
 {% endblock %}

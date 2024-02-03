@@ -11,6 +11,11 @@ class RSSReaderController extends AbstractController
     #[Route('rss_reader', name: 'app_r_s_s_reader')]
     public function index(): Response
     {
+
+        //Refresh Parameter from get header request
+        //$request  = $this->container->get('request_stack')->getCurrentRequest();
+        //dd( $request->query->get('rr') );
+
         $user = $this->getUser();
         $rssObjectList = $user->getRSSObjectList();
 
@@ -18,6 +23,7 @@ class RSSReaderController extends AbstractController
         foreach ( $rssObjectList as $rss){
             if($rss->isActive()){
                 $rssList[] = simplexml_load_file($rss->getUrl());
+                //dd(simplexml_load_file($rss->getUrl()));
             }
         }
 

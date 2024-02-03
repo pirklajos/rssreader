@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>RSSObject index</h1>
-
+    <a href="{{ path('app_r_s_s_object_new') }}"  class="fa-solid fa-plus"></a>
     <table class="table">
         <thead>
             <tr>
@@ -21,8 +21,8 @@
                 <td>{{ rss_object.url }}</td>
                 <td>{{ rss_object.active ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('app_r_s_s_object_show', {'id': rss_object.id}) }}">show</a>
-                    <a href="{{ path('app_r_s_s_object_edit', {'id': rss_object.id}) }}">edit</a>
+                    <a href="{{ path('app_r_s_s_object_show', {'id': rss_object.id}) }}" class="fa-solid fa-eye"></a>
+                    <a href="{{ path('app_r_s_s_object_edit', {'id': rss_object.id}) }}" class="fa-solid fa-edit"></a>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +33,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_r_s_s_object_new') }}">Create new</a>
+    <a href="{{ path('app_r_s_s_object_new') }}"  class="fa-solid fa-plus"></a>
 {% endblock %}
