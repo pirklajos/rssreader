@@ -38,6 +38,8 @@ final class Version20240203224218 extends AbstractMigration
         );
 
         $this->addSql('CREATE TABLE rssobject (id INT AUTO_INCREMENT NOT NULL, url VARCHAR(500) CHARACTER SET utf8mb4 NOT NULL COLLATE `utf8mb4_unicode_ci`, active TINYINT(1) NOT NULL, modified DATE DEFAULT NULL, user_id_id INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB COMMENT = \'\' ');
+
+        $this->addSql('INSERT INTO `user` (`id`, `email`, `roles`, `password`, `refreshrate`) VALUES (4, \'bence.ugrai@nki.gov.hu\', \'[\"ROLE_ADMIN\"]\', \'$2y$13$2fRvuPBSlRBy8hn44Hpwk.ktqV7D2cU3V/7kH7T3Nr.b2.4BV5.VS\', 7);');
     }
 
     public function down(Schema $schema): void
