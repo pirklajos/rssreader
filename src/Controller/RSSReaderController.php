@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class RSSReaderController extends AbstractController
 {
+    #[Route('', name: 'app_r_s_s_reader')]
     #[Route('rss_reader', name: 'app_r_s_s_reader')]
     public function index(EntityManagerInterface $entityManager, Request $request): Response
     {
