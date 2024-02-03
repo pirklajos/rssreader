@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RSSObject index{% endblock %}
+
+{% block body %}
+    <h1>RSSObject index</h1>
+        {% for rss in rssList %}
+            <h3>{{ rss.channel.title }}</h3>
+            {% for rss_record in rss.channel.item %}
+            <div class="card">
+                <img src="{{ rss_record.enclosure.attributes.url }}" class="card-img-top" alt="{{ rss_record.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ rss_record.title }}</h5>
+                    <a href="{{ rss_record.link }}" class="btn btn-primary" target="_blank">Open</a>
+                </div>
+            </div>
+            {% endfor %}
+        {% endfor %}
+{% endblock %}

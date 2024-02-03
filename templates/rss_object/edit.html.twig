@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit RSSObject{% endblock %}
+
+{% block body %}
+    <h1>Edit RSSObject</h1>
+
+    {{ include('rss_object/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_r_s_s_object_index') }}">back to list</a>
+
+    {{ include('rss_object/_delete_form.html.twig') }}
+{% endblock %}

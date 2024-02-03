@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RSSObject index{% endblock %}
+
+{% block body %}
+    <h1>RSSObject index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Url</th>
+                <th>Active</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rss_object in rss_objects %}
+            <tr>
+                <td>{{ rss_object.id }}</td>
+                <td>{{ rss_object.url }}</td>
+                <td>{{ rss_object.active ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_r_s_s_object_show', {'id': rss_object.id}) }}">show</a>
+                    <a href="{{ path('app_r_s_s_object_edit', {'id': rss_object.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_r_s_s_object_new') }}">Create new</a>
+{% endblock %}
