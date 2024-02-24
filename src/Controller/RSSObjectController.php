@@ -27,6 +27,7 @@ class RSSObjectController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $rSSObject = new RSSObject();
+        $rSSObject->setUserId($this->getUser());
         $form = $this->createForm(RSSObjectType::class, $rSSObject);
         $form->handleRequest($request);
 
