@@ -16,7 +16,7 @@ class RSSReaderController extends AbstractController
     {
         $user = $this->getUser();
 
-        if($request->request->get('refresh_rate')){
+        if ($request->request->get('refresh_rate')) {
             $user->setRefreshrate($request->request->get('refresh_rate'));
             $entityManager->persist($user);
             $entityManager->flush();
@@ -25,10 +25,10 @@ class RSSReaderController extends AbstractController
         $rssObjectList = $user->getRSSObjectList();
 
         $rssList = [];
-        foreach ( $rssObjectList as $rss){
-            if($rss->isActive()){
-                $rssList[] = simplexml_load_file($rss->getUrl());
-                //dd(simplexml_load_file($rss->getUrl()));
+        foreach ($rssObjectList as $rss) {
+            if ($rss->isActive()) {
+                $rss = simplexml_load_file($rss->getUrl());
+                $rssList[] = $rss;
             }
         }
 
