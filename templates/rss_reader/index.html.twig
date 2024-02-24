@@ -1,45 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}RSSObject index{% endblock %}
+{% block title %}RSSObject index
+{% endblock %}
 
 {% block body %}
 
-    <h1>RSSObject index</h1>
-        <form action="rss_reader" method="POST">
-            <label for="refreshRateSlider" class="form-label">Refresh Rate in mins</label>
-            <input type="range" value="{{ refreshRate }}" name="refresh_rate" class="form-range" min="2" max="30" id="refreshRateSlider" oninput="this.nextElementSibling.value = this.value">
-            <output>{{ refreshRate }}</output>
-            <input type="submit" />
-        </form>
-        
-        {% for rss in rssList %}
-            <h3>{{ rss.channel.title }}</h3>
-            <div class="row">
-                {% for rss_record in rss.channel.item|slice(0, 8) %}
-                    <div class="col">
-                        <div class="card">
-                            <img src="{{ rss_record.enclosure.attributes.url }}" class="card-img-top" alt="{{ rss_record.title }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ rss_record.title }}</h5>
-                                <a href="{{ rss_record.link }}" class="btn btn-primary" target="_blank">Open</a>
-                            </div>
-                        </div>
-                    </div>
-                {% else %}
-                <h5>No feed content for this channel</h5>
-                {% endfor %}
-            </div>
-        {% else %}
-        <h3>There is no registered RSS feed yet</h3>
-        {% endfor %}
+	<h1>RSSObject index</h1>
+	<form action="rss_reader" method="POST">
+		<label for="refreshRateSlider" class="form-label">Refresh Rate in mins</label>
+		<input type="range" value="{{ refreshRate }}" name="refresh_rate" class="form-range" min="2" max="30" id="refreshRateSlider" oninput="this.nextElementSibling.value = this.value">
+		<output>{{ refreshRate }}</output>
+		<input type="submit"/>
+	</form>
+
+	{% for rss in rssList %}
+		<h3>{{ rss.channel.title }}</h3>
+		<div class="row">
+			{% for rss_record in rss.channel.item|slice(0, 8) %}
+
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">{{ rss_record.title }}</h5>
+						<p>{{ rss_record.description }}</p>
+						<a href="{{ rss_record.link }}" class="btn btn-primary" target="_blank">Open</a>
+					</div>
+				</div>
+			{% else %}
+				<h5>No feed content for this channel</h5>
+			{% endfor %}
+		</div>
+	{% else %}
+		<h3>There is no registered RSS feed yet</h3>
+	{% endfor %}
 
 
-
-<script>
-    setTimeout(function(){
-        location.reload();
-    }, {{ refreshRate }}*1000*60);
-</script>
+	<script>
+		setTimeout(function () {
+location.reload();
+}, {{ refreshRate }} * 1000 * 60);
+	</script>
 
 {% endblock %}
-
